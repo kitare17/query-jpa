@@ -48,7 +48,17 @@
 			<artifactId>mssql-jdbc</artifactId>
 			<version>12.3.0.jre17-preview</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.webjars/bootstrap -->
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>bootstrap</artifactId>
+			<version>4.6.2</version>
+		</dependency>
 
 	</dependencies>
 
