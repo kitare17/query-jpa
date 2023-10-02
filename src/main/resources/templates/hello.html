@@ -5,9 +5,47 @@
     <title>Title</title>
 </head>
 
-<link  href="webjars/bootstrap/4.6.2/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="webjars/bootstrap/4.6.2/css/bootstrap.min.css" rel="stylesheet"/>
 <body>
 <h1 class="btn btn-success" th:text="${message}"></h1>
+
+<div class="container">
+    <h1>Form add</h1>
+
+    <form method="post"  th:action="@{/course}" th:object="${course}">
+        <input  type="text" id="id"  th:field="*{id}"/>
+        <label for="name">Name</label>
+        <input  id="name"  th:field="*{name}"/>
+        <input type="submit">
+    </form>
+    <table class="table table-bordered table-striped table-hover">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+
+
+        <th:block th:each="c : ${courses}">
+            <tr>
+                <td th:text="${c.id}">...</td>
+                <td th:text="${c.name}">...</td>
+                <td><a href="" class="btn btn-success">Update</a></td>
+                <td>
+                    <form method="post"  th:action="@{/course}" >
+                        <input  type="text" th:value="${c.id}" name="id"/>
+                        <input class="btn btn-danger" type="submit" value="Delete">
+                    </form>
+
+            </tr>
+
+        </th:block>
+
+    </table>
+
+</div>
+
 
 <script src="webjars/jquery/3.5.1/jquery.slim.min.js"></script>
 <script src="webjars/popper.js/1.16.0/popper.min.js"></script>

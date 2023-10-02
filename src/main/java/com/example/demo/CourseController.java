@@ -2,10 +2,10 @@ package com.example.demo;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
@@ -16,9 +16,24 @@ import java.util.List;
 public class CourseController {
     @Autowired
     private CourseService courseService;
+
     @GetMapping
-    public List<Course> getAllCourse(){
+    public List<Course> getAllCourse(Model model) {
+        model.addAttribute("course", new Course());
         return courseService.getMyCourse();
     }
 
+    @PostMapping
+    public String addNewCourse(@ModelAttribute Course course) {
+        System.out.println("=>>>>>>>>>>>>>>>>>>" + course);
+        courseService.addNewCourse(course);
+
+        return "hello";
+    }
+
+    @DeleteMapping
+    public String deleteCourse(@PathVariable int id) {
+        courseService.removeCourse(id);
+        return "hello";
+    }
 }
