@@ -1,6 +1,10 @@
 package com.example.demo.relation_example;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -13,10 +17,10 @@ public class User {
     private int userId;
     @Column(name = "userName")
     private String userName;
-//    @Column(name = "roomId")
-//    private int roomId;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name ="roomId" ,referencedColumnName = "roomId")
+    @JsonManagedReference
     private Room room;
 
 }
